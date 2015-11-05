@@ -8,10 +8,16 @@ public class TowerControl : MonoBehaviour {
 	RaycastHit hit;
 	Ray mouseRay;
 	public GameObject hitPlane;
+	public bool selected;
+	private Light myLight;
+	private float selectionRadius;
 
 	// Use this for initialization
 	void Start () {
-		
+		selected = false;
+		selectionRadius = 5;
+		myLight = GetComponent<Light>();
+		myLight.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -22,10 +28,14 @@ public class TowerControl : MonoBehaviour {
 			mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(mouseRay, out hit)){
 				if (hit.collider.tag.Equals("HitPlane")){
-					//Debug.Log ("hit: " + hit.point.x);
 					var distance = Vector3.Distance(new Vector3(hit.point.x,0f,hit.point.z), transform.position);
-					if (distance < 0.5){
-						Debug.Log(transform.position.x + " " + transform.position.z);
+					if (distance < selectionRadius){
+						selected = true;
+						myLight.enabled = true;
+						//Debug.Log(transform.position.x + " " + transform.position.z);
+					} else {
+						selected = false;
+						myLight.enabled = false;
 					}
 				}
 			}

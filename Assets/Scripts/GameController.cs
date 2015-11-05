@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour {
 	
 	public GameObject TowerPositionParent;
 	Transform newPosition;
+	public float sizeMultiplyer = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class GameController : MonoBehaviour {
 				//create object
 				GameObject TowerPositionChild = (GameObject)Instantiate(Resources.Load("TowerPosition"));
 				TowerPositionChild.transform.parent = TowerPositionParent.transform;
-				TowerPositionChild.transform.position = new Vector3(i,0f,j);
+				TowerPositionChild.transform.position = new Vector3(i*sizeMultiplyer,0f,j*sizeMultiplyer);
 			}
 		}
 

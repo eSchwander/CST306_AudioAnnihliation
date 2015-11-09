@@ -15,6 +15,11 @@ public class SongSelection : MonoBehaviour {
 
 		foreach (string path in songs)
 			Debug.Log (path);
+
+		BeatDetector detector = BeatDetector.Instance ();
+		detector.loadSystem ();
+		detector.LoadSong(1024, songs[0]);
+		detector.setStarted (true);
 	}
 	
 	// Update is called once per frame

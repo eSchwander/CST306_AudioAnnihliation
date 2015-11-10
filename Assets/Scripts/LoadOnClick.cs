@@ -3,18 +3,19 @@ using System.Collections;
 
 public class LoadOnClick : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	public static string pathToSelectedSong;
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void setPath(string path){
+		pathToSelectedSong = path;
 	}
 
 	public void goToScene(string sceneName){
-		Debug.Log ("Pressed");
+		Debug.Log ("Pressed Start");
 		Application.LoadLevel (sceneName);
+	}
+
+	public void quitGame(){
+		Debug.Log ("Pressed Quit");
+		Application.Quit ();
 	}
 }

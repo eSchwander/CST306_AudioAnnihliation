@@ -72,7 +72,7 @@ public class AudioProcessor : MonoBehaviour
     }
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         callbacks = new List<AudioCallbacks>();
 

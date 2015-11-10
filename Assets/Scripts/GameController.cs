@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 	public GameObject TowerPositionParent;
 	Transform newPosition;
@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour {
 	public float spawnRate = 5f;
 
 	private float Timer;
+
+	bool startMusic = false;
 
 	// Use this for initialization
 	void Start () {
@@ -29,10 +31,24 @@ public class GameController : MonoBehaviour {
 		}
 		Debug.Log (LoadOnClick.pathToSelectedSong);
 		//Start the music
-		AudioSource audioSource = gameObject.AddComponent<AudioSource> ();
+		AudioSource audioSource = gameObject.GetComponent<AudioSource> ();
 		audioSource.clip = Resources.Load(LoadOnClick.pathToSelectedSong) as AudioClip;
 		audioSource.Play();
+
+
 		
+	}
+
+	public void onOnbeatDetected()
+	{
+		Debug.Log ("spawn");
+		SpawnWave();
+	}
+
+	public void onSpectrum(float[] spectrum)
+	{
+		//The spectrum is logarithmically averaged
+		//to 12 bands
 	}
 
 	//spawn individual enemies
@@ -44,10 +60,17 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Timer + Time.time > 3f && startMusic == false) {
+			startMusic = true;
+			AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+			processor.addAudioCallback(this);
+		}
+		/* This is now done in onOnbeatDetected
 		//create enemies
 		if (Timer < Time.time) {
 			SpawnWave();
 			Timer = Time.time + spawnRate;
 		}
+		*/
 	}
 }

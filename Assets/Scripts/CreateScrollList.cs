@@ -13,16 +13,24 @@ public class Song{
 	private string title;
 
 	public Song(string path){
-		this.path = path;
+		this.path = parsePath(path);
 		this.title = parseTitle (path);
+	}
+
+	private string parsePath(string path){
+		char[] delimiters = {'/'};
+		string[] temp = path.Split (delimiters);
+		string toReturn = temp [3] + "/" + temp [4];
+		Debug.Log (toReturn);
+		return(toReturn);
 	}
 
 	private string parseTitle(string path){
 		char[] delimiters = {'/', '.'};
 
 		string[] temp = path.Split (delimiters);
-		string toReturn = temp [4];
-		//Debug.Log (temp[4].ToString());
+		string toReturn = temp [5];
+		//Debug.Log (temp[5].ToString());
 		//Debug.Log (path);
 		return(toReturn);
 	}

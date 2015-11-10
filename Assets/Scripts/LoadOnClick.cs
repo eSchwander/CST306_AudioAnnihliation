@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LoadOnClick : MonoBehaviour {
 
-	public static string pathToSelectedSong;
+	public static string pathToSelectedSong = null;
 
 	// Would be used to set path if it was ever used
 	public void setPath(string path){

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GameController : MonoBehaviour {
-	
+
 	public GameObject TowerPositionParent;
 	Transform newPosition;
 	public Transform enemySpawnPosition;
@@ -27,7 +27,12 @@ public class GameController : MonoBehaviour {
 				TowerPositionChild.transform.position = new Vector3(i*sizeMultiplyer,0f,j*sizeMultiplyer);
 			}
 		}
-
+		Debug.Log (LoadOnClick.pathToSelectedSong);
+		//Start the music
+		AudioSource audioSource = gameObject.AddComponent<AudioSource> ();
+		audioSource.clip = Resources.Load(LoadOnClick.pathToSelectedSong) as AudioClip;
+		audioSource.Play();
+		
 	}
 
 	//spawn individual enemies

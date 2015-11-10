@@ -66,6 +66,7 @@ public class CreateScrollList : MonoBehaviour {
 				newSongButton.title.text = item.getTitle ();
 				newSongButton.setPath (item.getPath ());
 				newButton.transform.SetParent (contentPanel);
+				newButton.transform.localScale = new Vector3(1f,1f,1f);
 			}
 		}
 	}

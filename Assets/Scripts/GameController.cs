@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 	public void onOnbeatDetected()
 	{
-		Debug.Log ("spawn");
+		Debug.Log (Time.time);
 		SpawnWave();
 	}
 

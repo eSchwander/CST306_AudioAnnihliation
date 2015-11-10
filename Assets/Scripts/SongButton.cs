@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
+//This class is used for button creation on the song selection menu.
+//Also sets the the global song path variable at some point
 public class SongButton : MonoBehaviour {
 
 	public Button button;

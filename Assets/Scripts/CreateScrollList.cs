@@ -5,6 +5,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
+
+//This class holds the title and path of songs
 [System.Serializable]
 public class Song{
 	private string path;
@@ -34,6 +36,7 @@ public class Song{
 	}
 }
 
+//Used to populate the scroll list in song selection
 public class CreateScrollList : MonoBehaviour {
 
 	public GameObject songButton;
@@ -41,15 +44,10 @@ public class CreateScrollList : MonoBehaviour {
 	public string[] itemList;
 	public List<Song> songList;
 
-	// Use this for initialization
-	void Start () {
-		//Debug.Log (Directory.GetCurrentDirectory ());
-		//PopulateList ();
-	}
-
+	//Populates song selection menu if it is empty
 	public void PopulateList(){
 		if (songList.Count == 0) {
-			itemList = Directory.GetFiles ("./Assets/Music/", "*.mp3");
+			itemList = Directory.GetFiles ("./Assets/Resources/Music/", "*.mp3");
 			foreach (string x in itemList) {
 				songList.Add (new Song (x));
 				//Debug.Log (x);
@@ -64,8 +62,5 @@ public class CreateScrollList : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

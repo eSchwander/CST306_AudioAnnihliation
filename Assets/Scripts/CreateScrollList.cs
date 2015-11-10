@@ -18,9 +18,9 @@ public class Song{
 	}
 
 	private string parsePath(string path){
-		char[] delimiters = {'/'};
+		char[] delimiters = {'/', '.'};
 		string[] temp = path.Split (delimiters);
-		string toReturn = temp [3] + "/" + temp [4];
+		string toReturn = temp [4] + "/" + temp [5];
 		Debug.Log (toReturn);
 		return(toReturn);
 	}

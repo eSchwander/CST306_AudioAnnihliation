@@ -21,9 +21,24 @@ public class Enemy : MonoBehaviour {
 		nav.enabled = true;
 		nav.SetDestination (GameObject.FindWithTag("EnemyGoal").transform.position);
 	}
-	
+
+	/*//destory enemy and incremend on collision with goal
+	void OnColliderHit(Collider collision)
+	{
+		Debug.Log ("collided with something");
+		if(collision.gameObject.tag == "EnemyGoal")
+		{
+			DestroyObject(collision.gameObject);
+		}
+	}*/
+
 	// Update is called once per frame
 	void Update () {
-
+		var distance = Vector3.Distance(GameObject.FindWithTag("EnemyGoal").transform.position, transform.position);
+		Debug.Log (distance);
+		if (distance < 50) {
+			Debug.Log (distance);
+			DestroyObject(gameObject);
+		}
 	}
 }

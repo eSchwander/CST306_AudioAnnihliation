@@ -9,9 +9,23 @@ public class BasicEnemy : Enemy {
 		speed = 5;
 
 	}
+
+	/*//destroy enemy and incremend on collision with goal
+	void OnCollisionEnter(Collider collision)
+	{
+		Debug.Log ("collided with something");
+		if(collision.gameObject.tag == "EnemyGoal")
+		{
+			DestroyObject(collision.gameObject);
+		}
+	}*/
 	
 	// Update is called once per frame
 	void Update () {
-	
+		var distance = Vector3.Distance(GameObject.FindWithTag("EnemyGoal").transform.position, transform.position);
+		//Debug.Log (distance);
+		if (health <= 0f || distance < 5f) {
+			DestroyObject(gameObject);
+		}
 	}
 }

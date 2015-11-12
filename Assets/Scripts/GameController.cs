@@ -8,17 +8,22 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	public Transform enemySpawnPosition;
 	public GameObject EnemyParent;
 	public float sizeMultiplyer = 10;
-
-	public float spawnTime = 1f;
-	public float spawnRate = 5f;
-
+	
+	public float spawnRate = 0.1f;
 	private float Timer;
+	private float spawnTime;
+
+	public float health;
+	public float difficulty;
 
 	bool startMusic = false;
 
 	// Use this for initialization
 	void Start () {
 		Timer = Time.time;
+		spawnTime = Time.time;
+		health = 100;
+		difficulty = 1;
 
 		//fill TowerPositionParent object with tower positions
 		for (int i = 0; i < 10; i++) {
@@ -34,15 +39,18 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 		AudioSource audioSource = gameObject.GetComponent<AudioSource> ();
 		audioSource.clip = Resources.Load(LoadOnClick.pathToSelectedSong) as AudioClip;
 		audioSource.Play();
-
-
-		
 	}
 
 	public void onOnbeatDetected()
 	{
-		Debug.Log ("spawn");
-		SpawnWave();
+		//Debug.Log ("spawn");
+		if ((Time.time - spawnTime) > spawnRate) {
+			SpawnWave ();
+			//Debug.Log (Time.time - spawnTime);
+			spawnTime = Time.time;
+
+		}
+		//SpawnWave ();
 	}
 
 	public void onSpectrum(float[] spectrum)

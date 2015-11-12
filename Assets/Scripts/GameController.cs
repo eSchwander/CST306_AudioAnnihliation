@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 	public void onOnbeatDetected()
 	{
+<<<<<<< HEAD
 		//Debug.Log ("spawn");
 		if ((Time.time - spawnTime) > spawnRate) {
 			SpawnWave ();
@@ -51,6 +52,10 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 		}
 		//SpawnWave ();
+=======
+		Debug.Log (Time.time);
+		SpawnWave();
+>>>>>>> origin/development
 	}
 
 	public void onSpectrum(float[] spectrum)

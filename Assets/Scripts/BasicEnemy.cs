@@ -20,12 +20,14 @@ public class BasicEnemy : Enemy {
 		}
 	}*/
 	
+	/*
 	// Update is called once per frame
 	void Update () {
 		var distance = Vector3.Distance(GameObject.FindWithTag("EnemyGoal").transform.position, transform.position);
 		//Debug.Log (distance);
-		if (health <= 0f || distance < 5f) {
+		if (health <= 0f) {
 			DestroyObject(gameObject);
 		}
 	}
+	*/
 }

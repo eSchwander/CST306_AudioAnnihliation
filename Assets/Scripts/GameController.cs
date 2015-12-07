@@ -66,6 +66,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 		GameObject enemyChild = (GameObject)Instantiate(Resources.Load("BasicEnemy"));
 		//enemyChild.transform.parent = EnemyParent.transform;
 		enemyChild.transform.position = enemySpawnPosition.position;
+		enemyChild.AddComponent<NavMeshAgent> ();
 	}
 	
 	// Update is called once per frame

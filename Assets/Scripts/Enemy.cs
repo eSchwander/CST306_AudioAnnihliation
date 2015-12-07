@@ -24,15 +24,10 @@ public class Enemy : MonoBehaviour {
 	}
 
 
-	/*//destroy enemy and incremend on collision with goal
-	void OnColliderHit(Collider collision)
-	{
-		Debug.Log ("collided with something");
-		if(collision.gameObject.tag == "EnemyGoal")
-		{
-			DestroyObject(collision.gameObject);
-		}
-	}*/
+	void OnCollisionEnter(Collision col){
+		if (col.gameObject.tag == "Bullet")
+			health -= 1;
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -42,6 +37,8 @@ public class Enemy : MonoBehaviour {
 		else if (nav.enabled.Equals (false)) {
 			nav.enabled = true;
 			nav.speed = speed;
+			nav.acceleration = 10f;
+			nav.angularSpeed = 120f;
 		} 
 		else {
 			nav.SetDestination (GameObject.FindWithTag ("EnemyGoal").transform.position);
@@ -53,6 +50,10 @@ public class Enemy : MonoBehaviour {
 			DestroyObject(gameObject);
 		}
 
+	}
+
+	public void loseHealth(int dam){
+		health -= dam;
 	}
 
 }

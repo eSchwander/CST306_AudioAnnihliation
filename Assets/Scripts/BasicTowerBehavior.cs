@@ -19,9 +19,11 @@ public class BasicTowerBehavior : TowerBehavior {
 
 	//fire bullet at enemy
 	void fireBullet(Vector3 velocity, float speed, float size, float damage){
-		Transform bulletProjectile = (Transform) Instantiate (bulletTransform, transform.position, Quaternion.identity);
+		//Bullets spawn above towers to prevent them from colliding with the towers
+		Vector3 bulletSpawn = new Vector3 (transform.position.x, transform.position.y + 4f, transform.position.z);
+		Transform bulletProjectile = (Transform) Instantiate (bulletTransform, bulletSpawn, Quaternion.identity);
 		Rigidbody bulletProjectileRb = bulletProjectile.GetComponent<Rigidbody>();
-		Physics.IgnoreCollision(bulletProjectile.GetComponent<Collider>(), GetComponent<Collider>());
+		//Physics.IgnoreCollision(bulletProjectile.GetComponent<Collider>(), GetComponent<Collider>()); // Prevents bullet from hitting tower that shoots it
 		bulletProjectileRb.velocity = velocity*speed; // setting velocity is yet another way to make an object move
 		//Debug.Log (bulletProjectileRb.velocity);
 	}

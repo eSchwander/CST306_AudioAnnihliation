@@ -7,9 +7,10 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	Transform newPosition;
 	public Transform enemySpawnPosition;
 	public GameObject EnemyParent;
-	public float sizeMultiplyer = 10;
+	public float sizeMultiplyer = 5;
+	public int boardSize = 10;
 	
-	public float spawnRate = 0.1f;
+	public float spawnRate = 0.05f;
 	private float Timer;
 	private float spawnTime;
 
@@ -26,8 +27,8 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 		difficulty = 1;
 
 		//fill TowerPositionParent object with tower positions
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++){
+		for (int i = 0; i < boardSize; i++) {
+			for (int j = 0; j < boardSize; j++){
 				//create object
 				GameObject TowerPositionChild = (GameObject)Instantiate(Resources.Load("TowerPosition"));
 				TowerPositionChild.transform.parent = TowerPositionParent.transform;

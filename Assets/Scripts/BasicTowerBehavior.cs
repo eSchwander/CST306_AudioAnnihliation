@@ -20,21 +20,30 @@ public class BasicTowerBehavior : TowerBehavior {
 		Rigidbody bulletProjectileRb = bulletProjectile.GetComponent<Rigidbody>();
 		bulletProjectileRb.velocity = velocity*speed; // setting velocity is yet another way to make an object move
 	}
-	
+
+	void OnTriggerStay(Collider col){
+		if (col.tag == "Enemy") {
+			Debug.Log ("triggered");
+			if ((Time.time - time) > shotDelay) {
+				Vector3 bulletDirection = col.transform.position-transform.position;
+				fireBullet (bulletDirection, 3f, 2f, shotDamage);
+				time = Time.time;
+			}
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
+		/*
 		if ((Time.time - time) > shotDelay) {
-
 			GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
-
 			//this is your bullets direction
 			//Vector3 bulletDirection = closestEnemy.transform.position-transform.position;
 			Vector3 bulletDirection = enemies[0].transform.position-transform.position;
-			
 			fireBullet (bulletDirection, 3f, 2f, shotDamage);
-
 			time = Time.time;
 		}
+		*/
 
 
 	}

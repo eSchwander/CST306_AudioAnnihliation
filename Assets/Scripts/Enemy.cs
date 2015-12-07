@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour {
 		}
 		else if (nav.enabled.Equals (false)) {
 			nav.enabled = true;
+			nav.speed = speed;
 		} 
 		else {
 			nav.SetDestination (GameObject.FindWithTag ("EnemyGoal").transform.position);

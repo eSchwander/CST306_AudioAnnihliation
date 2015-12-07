@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Timer + Time.time > 10f && startMusic == false) {
+		if (Timer + Time.time > 1f && startMusic == false) {
 			startMusic = true;
 			AudioProcessor processor = FindObjectOfType<AudioProcessor>();
 			processor.addAudioCallback(this);

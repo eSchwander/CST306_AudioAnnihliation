@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoneyManager {
+public class MoneyManager{
 	//Singleton class used to keep track of your money
 
 	private static MoneyManager instance;
 
 	private int money;
+	private int startingCash = 10;
 
 	private MoneyManager() {
-		money = 0;
+		money = startingCash;
 	}
 	
 	public static MoneyManager getInstance(){
@@ -27,5 +28,9 @@ public class MoneyManager {
 
 	public void spendMoney(int amount){
 		money -= amount;
+	}
+
+	public int getMoney(){
+		return money;
 	}
 }

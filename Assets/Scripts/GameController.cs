@@ -1,32 +1,42 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
-
+	//Board variables
 	public GameObject TowerPositionParent;
 	Transform newPosition;
 	public Transform enemySpawnPosition;
 	public GameObject EnemyParent;
 	public float sizeMultiplyer = 1f;
 	public int boardSize = 20;
-	
+
+	//Variables used for spawning waves
 	public float spawnRate = 0.05f;
 	private float Timer;
 	private float spawnTime;
 	private int beatCounter = 0;
 	private int nthBeat = 10;
 
+	//Difficulty stuff
 	public float health;
 	public float difficulty;
 
+	//false till music is playing
 	bool startMusic = false;
 
 	//variables for visualizer
 	public GameObject visObject;
 	public float visMultiplyer = 500f;
 
+	//UI Text for Money tracking
+	public Text moneyText;
+	private string moneyMessage = "Bit Coinz: ";
+	private MoneyManager moneyMan;
+
 	// Use this for initialization
 	void Start () {
+		moneyMan = MoneyManager.getInstance ();
 		Timer = Time.time;
 		//spawnTime = Time.time;
 		health = 100;
@@ -88,6 +98,10 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 			AudioProcessor processor = FindObjectOfType<AudioProcessor>();
 			processor.addAudioCallback(this);
 		}
+
+
+		moneyText.text = moneyMessage + moneyMan.getMoney ();
+
 		/* This is now done in onOnbeatDetected
 		//create enemies
 		if (Timer < Time.time) {

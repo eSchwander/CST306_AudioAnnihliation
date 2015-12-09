@@ -48,6 +48,9 @@ public class Enemy : MonoBehaviour {
 		//Debug.Log (distance);
 		if (distance < 5f || health <= 0f) {
 			//Debug.Log (distance);
+			//Death grants the player the enemy's bounty
+			MoneyManager moneyMan = MoneyManager.getInstance();
+			moneyMan.gainMoney(bounty);
 			DestroyObject(gameObject);
 		}
 

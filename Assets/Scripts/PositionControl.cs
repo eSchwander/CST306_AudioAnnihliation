@@ -38,11 +38,14 @@ public class PositionControl : MonoBehaviour {
 						selected = true;
 						myLight.enabled = true;
 
-						//instantiate new tower object
-						GameObject towerChild = (GameObject)Instantiate(Resources.Load("BasicTower"));
-						towerChild.transform.parent = towerParent.transform;
-						towerChild.transform.position = transform.position;
-
+						//instantiate new tower object if you have the money for it
+						MoneyManager moneyMan = MoneyManager.getInstance();
+						if(moneyMan.getMoney() >= 5){ //5 is the basic tower cost. This should be shifted over to a var at some point
+							GameObject towerChild = (GameObject)Instantiate(Resources.Load("BasicTower"));
+							towerChild.transform.parent = towerParent.transform;
+							towerChild.transform.position = transform.position;
+							moneyMan.spendMoney(5);
+						}
 						//Debug.Log(transform.position.x + " " + transform.position.z);
 					} else {
 						selected = false;

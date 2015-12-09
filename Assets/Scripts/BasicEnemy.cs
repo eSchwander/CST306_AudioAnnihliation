@@ -8,6 +8,7 @@ public class BasicEnemy : Enemy {
 	void Start () {
 		health = 100f;
 		speed = 20f;
+		bounty = 2;
 		nav = GetComponent<NavMeshAgent>();
 	}
 

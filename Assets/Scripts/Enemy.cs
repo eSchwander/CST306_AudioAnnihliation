@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour {
 
 	public float health;
 	public float speed;
+	public int bounty;
 	//public NavMeshAgent nav;
 	NavMeshAgent nav;
 

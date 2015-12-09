@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	public float spawnRate = 0.05f;
 	private float Timer;
 	private float spawnTime;
+	private int beatCounter = 0;
+	private int nthBeat = 10;
 
 	public float health;
 	public float difficulty;
@@ -26,7 +28,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	// Use this for initialization
 	void Start () {
 		Timer = Time.time;
-		spawnTime = Time.time;
+		//spawnTime = Time.time;
 		health = 100;
 		difficulty = 1;
 
@@ -50,9 +52,9 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 	public void onOnbeatDetected()
 	{
-
+		beatCounter += 1;
 		//Debug.Log ("spawn");
-		if ((Time.time - spawnTime) > spawnRate) {
+		if (beatCounter % nthBeat == 0) {
 			SpawnWave ();
 			//Debug.Log (Time.time - spawnTime);
 			spawnTime = Time.time;

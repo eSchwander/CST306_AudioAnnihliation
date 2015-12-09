@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour {
 		else if (nav.enabled.Equals (false)) {
 			nav.enabled = true;
 			nav.speed = speed;
-			nav.acceleration = 10f;
+			nav.acceleration = 50f;
 			nav.angularSpeed = 120f;
 		} 
 		else {

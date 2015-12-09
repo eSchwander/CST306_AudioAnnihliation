@@ -7,8 +7,8 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	Transform newPosition;
 	public Transform enemySpawnPosition;
 	public GameObject EnemyParent;
-	public float sizeMultiplyer = 5;
-	public int boardSize = 10;
+	public float sizeMultiplyer = 1f;
+	public int boardSize = 20;
 	
 	public float spawnRate = 0.05f;
 	private float Timer;
@@ -18,6 +18,10 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	public float difficulty;
 
 	bool startMusic = false;
+
+	//variables for visualizer
+	public GameObject visObject;
+	public float visMultiplyer = 500f;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +44,8 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 		AudioSource audioSource = gameObject.GetComponent<AudioSource> ();
 		audioSource.clip = Resources.Load(LoadOnClick.pathToSelectedSong) as AudioClip;
 		audioSource.Play();
+
+		visObject = GameObject.FindGameObjectWithTag ("Visualizer");
 	}
 
 	public void onOnbeatDetected()
@@ -60,6 +66,9 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	{
 		//The spectrum is logarithmically averaged
 		//to 12 bands
+
+		Debug.Log ("SPECTRUM: " + spectrum[6]);
+		visObject.transform.localScale = new Vector3 (spectrum [6]*visMultiplyer, 0f, spectrum [6]*visMultiplyer);
 	}
 
 	//spawn individual enemies

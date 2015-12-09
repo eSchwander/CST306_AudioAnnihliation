@@ -2,12 +2,17 @@
 using System.Collections;
 
 public class BasicEnemy : Enemy {
+	NavMeshAgent nav;
 
 	// Use this for initialization
 	void Start () {
-		health = 10;
-		speed = 5f;
+		health = 100f;
+		speed = 20f;
+		nav = GetComponent<NavMeshAgent>();
+	}
 
+	void awake(){
+		nav.speed = speed;
 	}
 
 	/*//destroy enemy and incremend on collision with goal

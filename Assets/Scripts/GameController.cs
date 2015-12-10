@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 	//UI Text for Money tracking
 	public Text moneyText;
-	private string moneyMessage = "Bit Coinz: ";
+	private string moneyMessage = "Shekels: ";
 	private MoneyManager moneyMan;
 
 	// Use this for initialization

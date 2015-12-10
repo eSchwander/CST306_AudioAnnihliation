@@ -6,7 +6,7 @@ public class BasicEnemy : Enemy {
 
 	// Use this for initialization
 	void Start () {
-		health = 100f;
+		health = 10f;
 		speed = 20f;
 		bounty = 2;
 		nav = GetComponent<NavMeshAgent>();

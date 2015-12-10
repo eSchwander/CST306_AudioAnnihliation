@@ -27,7 +27,11 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 	//variables for visualizer
 	public GameObject visObject;
-	public float visMultiplyer = 500f;
+	public float volume;
+	public Vector3 initialScale;
+	public float visMultiplyer = 5f;
+	public ParticleSystem particleVis;
+	public GameObject planeVis;
 
 	//UI Text for Money tracking
 	public Text moneyText;
@@ -57,7 +61,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 		audioSource.clip = Resources.Load(LoadOnClick.pathToSelectedSong) as AudioClip;
 		audioSource.Play();
 
-		visObject = GameObject.FindGameObjectWithTag ("Visualizer");
+		visObject = GameObject.FindGameObjectWithTag ("Visualizer");;
 	}
 
 	public void onOnbeatDetected()
@@ -85,7 +89,24 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 		//to 12 bands
 
 		//Debug.Log ("SPECTRUM: " + spectrum[6]);
+
 		visObject.transform.localScale = new Vector3 (spectrum [6]*visMultiplyer, 0f, spectrum [6]*visMultiplyer);
+
+		for (int i = 0; i < 11; i++) {
+			volume += spectrum[i];
+		}
+		volume = volume / 2;
+		initialScale = transform.localScale;
+		//visObject.transform.localScale = Vector3.Lerp (Transform.localScale, volume*visMultiplyer, 0f, volume*visMultiplyer);
+		visObject.transform.localScale = Vector3.Lerp (initialScale, new Vector3(volume*visMultiplyer, 0f, volume*visMultiplyer), Time.deltaTime*1000f);
+
+		//change particle system
+		particleVis.GetComponent<ParticleSystem> ().startColor = new Color (spectrum[1]*visMultiplyer, spectrum[6]*visMultiplyer, spectrum[10]*visMultiplyer, volume*visMultiplyer);
+		particleVis.GetComponent<ParticleSystem> ().startSpeed = volume*visMultiplyer;
+		particleVis.GetComponent<ParticleSystem> ().emissionRate = volume * visMultiplyer;
+
+		planeVis.GetComponent<Renderer> ().material.color = Color.green;
+
 	}
 
 	//spawn individual enemies

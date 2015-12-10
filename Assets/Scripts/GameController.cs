@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	private float Timer;
 	private float spawnTime;
 	private int beatCounter = 0;
-	private int nthBeat = 10;
+	private int nthBeat = 20;
 
 	//Difficulty stuff
 	public float health;
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 	//UI Text for Money tracking
 	public Text moneyText;
-	private string moneyMessage = "Bit Coinz: ";
+	private string moneyMessage = "Shekels: ";
 	private MoneyManager moneyMan;
 
 	// Use this for initialization
@@ -63,11 +63,16 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	public void onOnbeatDetected()
 	{
 		beatCounter += 1;
-		//Debug.Log ("spawn");
+
 		if (beatCounter % nthBeat == 0) {
-			SpawnWave ();
+			Debug.Log ("spawn");
+			if(Random.Range(0,10) >= 9){
+				SpawnWave ("HeavyEnemy");
+			}
+			else
+				SpawnWave("BasicEnemy");
 			//Debug.Log (Time.time - spawnTime);
-			spawnTime = Time.time;
+			//spawnTime = Time.time;
 
 		}
 		//SpawnWave ();
@@ -79,13 +84,13 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 		//The spectrum is logarithmically averaged
 		//to 12 bands
 
-		Debug.Log ("SPECTRUM: " + spectrum[6]);
+		//Debug.Log ("SPECTRUM: " + spectrum[6]);
 		visObject.transform.localScale = new Vector3 (spectrum [6]*visMultiplyer, 0f, spectrum [6]*visMultiplyer);
 	}
 
 	//spawn individual enemies
-	void SpawnWave(){
-		GameObject enemyChild = (GameObject)Instantiate(Resources.Load("BasicEnemy"));
+	void SpawnWave(string enemy){
+		GameObject enemyChild = (GameObject)Instantiate(Resources.Load(enemy));
 		//enemyChild.transform.parent = EnemyParent.transform;
 		enemyChild.transform.position = enemySpawnPosition.position;
 		enemyChild.AddComponent<NavMeshAgent> ();

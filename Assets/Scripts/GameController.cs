@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	public Vector3 initialScale;
 	public float visMultiplyer = 5f;
 	public ParticleSystem particleVis;
-	//public GameObject planeVis;
+	public GameObject planeVis;
 
 	//UI Text for Money tracking
 	public Text moneyText;
@@ -106,7 +106,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 		particleVis.GetComponent<ParticleSystem> ().startSpeed = volume*visMultiplyer;
 		particleVis.GetComponent<ParticleSystem> ().emissionRate = volume * visMultiplyer;
 
-		//planeVis.GetComponent<Renderer> ().material.color = Color.green;
+		planeVis.GetComponent<Renderer> ().material.color = N;
 
 	}
 

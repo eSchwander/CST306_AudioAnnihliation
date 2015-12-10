@@ -78,7 +78,7 @@ public class AudioProcessor : MonoBehaviour
 
         initArrays();
 
-        samplingRate = GetComponent<AudioSource>().clip.frequency;
+       	samplingRate = GetComponent<AudioSource>().clip.frequency;
 
         framePeriod = (float)bufferSize / (float)samplingRate;
 

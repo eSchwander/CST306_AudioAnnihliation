@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 	private float Timer;
 	private float spawnTime;
 	private int beatCounter = 0;
-	private int nthBeat = 20;
+	private int nthBeat = 15;
 
 	//Difficulty stuff
 	public float health;
@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour, AudioProcessor.AudioCallbacks {
 
 		if (beatCounter % nthBeat == 0) {
 			Debug.Log ("spawn");
-			if(Random.Range(0,10) >= 9){
+			if(Random.Range(0,10) >= 9 && beatCounter > nthBeat * 10){
 				SpawnWave ("HeavyEnemy");
 			}
 			else

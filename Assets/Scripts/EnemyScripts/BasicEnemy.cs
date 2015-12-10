@@ -6,7 +6,7 @@ public class BasicEnemy : Enemy {
 	void Start () {
 		totalHealth = 10f;
 		currentHealth = totalHealth;
-		speed = 5f;
+		speed = 3.5f;
 		bounty = 2;
 
 	}

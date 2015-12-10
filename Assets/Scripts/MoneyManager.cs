@@ -7,7 +7,7 @@ public class MoneyManager{
 	private static MoneyManager instance;
 
 	private int money;
-	private int startingCash = 10;
+	private int startingCash = 20;
 
 	private MoneyManager() {
 		money = startingCash;

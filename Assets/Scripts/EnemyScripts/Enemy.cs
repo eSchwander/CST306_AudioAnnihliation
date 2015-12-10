@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
 
 	//public NavMeshAgent nav;
 	NavMeshAgent nav;
-
+	Renderer rend;
 
 	void Start () {
 		//nav = GetComponent<NavMeshAgent>();
@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour {
 
 	void Awake(){
 		nav = GetComponent<NavMeshAgent>();
+		rend = GetComponent<Renderer> ();
+		rend.material.color = new Color(1f,0f,0f);
+
 		//nav.speed = speed;
 		//nav.enabled = true;
 		//nav.SetDestination (GameObject.FindWithTag("EnemyGoal").transform.position);
@@ -35,6 +38,7 @@ public class Enemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 		if (nav.Equals (null)) {
 			nav = GetComponent<NavMeshAgent>();
 			nav.enabled = false;
@@ -45,13 +49,14 @@ public class Enemy : MonoBehaviour {
 			nav.speed = speed;
 			nav.acceleration = 50f;
 			nav.angularSpeed = 120f;
+			nav.radius = 1f;
 			Debug.Log ("Destination Set");
 			nav.SetDestination (GameObject.FindWithTag ("EnemyGoal").transform.position);
 
 		}
 		var distance = Vector3.Distance(GameObject.FindWithTag("EnemyGoal").transform.position, transform.position);
 		//Debug.Log (distance);
-		if (distance < 5f || currentHealth <= 0f) {
+		if (distance < 10f || currentHealth <= 0f) {
 			//Debug.Log (distance);
 			//Death grants the player the enemy's bounty
 			MoneyManager moneyMan = MoneyManager.getInstance();
